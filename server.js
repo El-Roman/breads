@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 // Breads
 const breadsController = require('./controllers/breads_controller.js')
-app.use('/breads', breadsController)
+app.use('/bread_router', breadsController)
 
 // LISTEN
 app.listen(PORT, () => {
