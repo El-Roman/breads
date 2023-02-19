@@ -31,7 +31,7 @@ bread_router.get('/:indexArray/edit', (req, res) => {
 })
 
 
-
+// SHOW
 bread_router.get('/:id', (req, res) => {
     Bread.findById(req.params.id)
         .then(foundBread => {
@@ -43,20 +43,6 @@ bread_router.get('/:id', (req, res) => {
             res.send('404')
         })
 })
-
-
-
-// // SHOW
-// bread_router.get('/:arrayIndex', (req, res) => {
-//     if (Bread[req.params.arrayIndex]) {
-//         res.render('Show', {
-//             bread: Bread[req.params.arrayIndex],
-//             index: req.params.arrayIndex,
-//         })
-//     } else {
-//         res.render('404')
-//     }
-// })
 
 
 // CREATE
