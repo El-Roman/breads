@@ -61,8 +61,10 @@ bread_router.post('/', (req, res) => {
 
 // DELETE
 bread_router.delete('/:indexArray', (req, res) => {
-    Bread.splice(req.params.indexArray, 1)
-    res.status(303).redirect('/breads')
+    Bread.findByIdAndDelete(req.params.id)
+        .then(deletedBread => {
+            res.status(303).redirect('/breads')
+        })
 })
 
 // UPDATE
