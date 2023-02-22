@@ -4,7 +4,7 @@ const Default = require('./layouts/Default')
 function Index({ breads }) {
     return (
         <Default>
-            <h2>Index Page</h2>
+            <h2>We got bread!</h2>
             {/* <p>I have {breads[0].name} bread!</p> */}
             {/* This is a JSX comment. */}
             <ul>
