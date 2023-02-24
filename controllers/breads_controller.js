@@ -31,19 +31,24 @@ bread_router.get('/new', (req, res) => {
 
 // EDIT
 bread_router.get('/:id/edit', (req, res) => {
-    Bread.findById(req.params.id)
-        .then(foundBread => {
-            res.render('edit', {
-                bread: foundBread
-            });
-        });
-});
+    Baker.find()
+        .then(foundBakers => {
+            Bread.findById(req.params.id)
+                .then(foundBread => {
+                    res.render('edit', {
+                        bread: foundBread,
+                        bakers: foundBakers
+                    })
+                })
+        })
+})
 
 
 
 // SHOW
 bread_router.get('/:id', (req, res) => {
     Bread.findById(req.params.id)
+        .populate('baker')
         .then(foundBread => {
             const bakedBy = foundBread.getBakedBy()
             console.log(bakedBy)
