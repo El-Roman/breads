@@ -19,11 +19,18 @@ const bakerSchema = new Schema({
     { toJSON: { virtuals: true } })
 
 //Virtuals
-
 bakerSchema.virtual('breads', {
     ref: 'Bread',
     localField: '_id',
     foreignField: 'baker'
+})
+
+// hooks 
+bakerSchema.post('findOneAndDelete', function () {
+    Bread.deleteMany({ baker: this._conditions._id })
+        .then(deleteStatus => {
+            console.log(deleteStatus)
+        })
 })
 
 

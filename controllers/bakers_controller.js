@@ -4,8 +4,6 @@ const baker = express.Router()
 const Baker = require('../models/baker')
 const bakerSeedData = require('../models/baker_seed')
 
-// export
-module.exports = baker
 
 baker.get('/data/seed', (req, res) => {
     Baker.insertMany(bakerSeedData)
@@ -32,5 +30,15 @@ baker.get('/:id', (req, res) => {
         })
 })
 
+// delete
+baker.delete('/:id', (req, res) => {
+    Baker.findByIdAndDelete(req.params.id)
+        .then(deletedBaker => {
+            res.status(303).redirect('/breads')
+        })
+})
 
 
+
+// export
+module.exports = baker
