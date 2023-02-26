@@ -4,19 +4,17 @@ const Bread = require('../models/bread.js')
 const Baker = require('../models/baker')
 
 // Index:
-bread_router.get('/', (req, res) => {
-    Baker.find()
-        .then(foundBakers => {
-            Bread.find()
-                .then(foundBreads => {
-                    res.render('index', {
-                        breads: foundBreads,
-                        bakers: foundBakers,
-                        title: 'Index Page'
-                    })
-                })
-        })
+bread_router.get('/', async (req, res) => {
+    const foundBakers = await Baker.find().lean()
+    const foundBreads = await Bread.find().limit(10).lean()
+    console.log(foundBreads)
+    res.render('index', {
+        breads: foundBreads,
+        bakers: foundBakers,
+        title: 'Index Page'
+    })
 })
+
 
 
 
